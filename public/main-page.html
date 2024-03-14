@@ -17,7 +17,7 @@
     <ul>
       <li><a href="#home">Uusi merkintä</a></li>
       <li><a href="/old-entries-page.html">Omat merkinnät</a></li>
-      <li style="float: right" class="active logout"><a id="logoutButton" href="/login-page.html">Kirjaudu ulos</a></li>
+      <li style="float: right" class="active logout"><a id="logoutButton" href="/index.html">Kirjaudu ulos</a></li>
     </ul>
 
     <div class="user">Tervetuloa päiväkirjaasi <span id="name"></span></div>
@@ -25,7 +25,7 @@
     <form id="diaryForm">
         <label for="date">Päivämäärä:</label>
         <input type="date" id="date" name="date" required><br><br>
-      
+
         <label for="mood">Mieliala:</label>
         <select id="mood" name="mood" >
           <option value="Neutraali">Neutraali</option>
@@ -34,26 +34,26 @@
           <option value="Huono">Huono</option>
           <option value="Todella huono">Todella huono</option>
         </select><br><br>
-      
+
         <label for="weight">Paino (kg):</label>
         <input type="number" id="weight" name="weight" min="0" step="0.1"><br><br>
-      
+
         <label for="sleep">Unen määrä (tunteina):</label>
         <input type="number" id="sleep" name="sleep" min="0" step="0.5" ><br><br>
-      
+
         <label for="exerciseDuration">Liikunnan kesto (min):</label>
         <input type="number" id="exerciseDuration" name="exerciseDuration" min="0"><br><br>
-      
+
         <label for="exerciseIntensity">Liikunnan intensiteetti:</label>
         <select id="exerciseIntensity" name="exerciseIntensity">
           <option value="Kevyt">Kevyt</option>
           <option value="Kohtalainen">Kohtalainen</option>
           <option value="Raskas">Raskas</option>
         </select><br><br>
-      
+
         <label for="content">Päiväkirjamerkintä:</label><br>
         <textarea id="content" name="content" rows="4" cols="50"></textarea><br><br>
-      
+
         <input type="submit" value="Tallenna" class="loginuser">
       </form>
 
