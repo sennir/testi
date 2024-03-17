@@ -14,8 +14,8 @@ const listAllEntries = async () => {
 const listAllEntriesByUserId = async (id) => {
   try {
     const sql = 'SELECT * FROM DiaryEntries WHERE user_id=?';
-    // const params = [id];
-    // const [rows] = await promisePool.query(sql, params);
+    const params = [id];
+    const [rows] = await promisePool.query(sql, params);
     // console.log('rows', rows);
     return rows;
   } catch (e) {

@@ -7,14 +7,15 @@ import {
   listAllEntriesByUserId,
 } from '../models/entry-model.mjs';
 
-const getEntries = async (req, res) => {
+const getEntries = async (req, res, next) => {
   // return only logged in user's own entries
   // - get user's id from token (req.user.user_id)
-  const result = await listAllEntriesByUserId();
-  if (result.error) {
-    return res.status(result.error).json(result);
+  const result = await listAllEntriesByUserId(req.user.user_id);
+  if (!result.error) {
+    res.json(result);
+  } else {
+    next(new Error(result.error));
   }
-  return res.json(result);
 };
 
 const getEntryById = async (req, res, next) => {
