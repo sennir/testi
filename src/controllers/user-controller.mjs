@@ -42,7 +42,6 @@ const postUser = async (req, res, next) => {
 const putUser = async (req, res, next) => {
   // Get userinfo from req.user object extracted from token
   // Only user authenticated by token can update own data
-  // TODO: admin user can update any user (incl. user_level)
   const userId = req.user.user_id;
   const {username, password, email} = req.body;
   // hash password if included in request

@@ -4,7 +4,6 @@ const getItems = (req, res) => {
   res.json(items);
 };
 
-// palauta vain se objekti, jonka id vastaa pyydettyä, muuten 404
 const getItemById = (req, res) => {
   // console.log('requested item id', req.params.id);
   const itemFound = items.find((item) => item.id == req.params.id);
@@ -17,7 +16,6 @@ const getItemById = (req, res) => {
 };
 
 const postItem = (req, res) => {
-  // lisää postattu item items-taulukkoon
   console.log('postItem request body', req.body);
   // error if name property is missing
   if (!req.body.name) {
@@ -44,7 +42,6 @@ const deleteItem = (req, res) => {
 };
 
 const putItem = (req, res) => {
-  // TODO: implement modify item
   const index = items.findIndex((item) => item.id == req.params.id);
   // not found
   if (index === -1) {

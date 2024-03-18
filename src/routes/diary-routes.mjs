@@ -1,6 +1,6 @@
 import express from 'express';
 import { body, validationResult } from 'express-validator';
-import DiaryEntry from '../models/diaryEntry.js'; // Tuodaan käyttöön päiväkirjamallin
+import DiaryEntry from '../models/diaryEntry.js';
 import User from '../models/user.js';
 
 const router = express.Router();
@@ -8,7 +8,7 @@ const router = express.Router();
 // POST-pyyntö uuden päiväkirjamerkinnän tallentamiseksi
 router.post(
   '/api/diary', [
-    // Lisää tarvittaessa tietojen validointi
+    // tietojen validointi lisättäisiin tänne
     body('date').isDate(),
     body('mood').isIn(['Neutraali', 'Hyvä', 'Erinomainen', 'Huono', 'Todella huono']),
     body('weight').isNumeric(),
@@ -18,14 +18,13 @@ router.post(
     body('content').isString(),
   ],
   async (req, res) => {
-    // Tarkista, löytyykö validointivirheitä
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
     try {
-      // Etsi käyttäjä tietokannasta käyttäjänimen perusteella
+      // Etsi käyttäjä tietokannasta käyttäjänimen perusteella, tämä pitäisi muuttaa user_id:n kautta etsimiseksi
       const username = req.body.username;
       const user = await User.findOne({ username });
 
@@ -36,7 +35,7 @@ router.post(
 
       // Luodaan uusi päiväkirjamerkintä
       const newDiaryEntry = new DiaryEntry({
-        user_id: user._id, // Olettaen, että käyttäjän id on tallennettu pyynnön mukana (esim. JWT-tietokentässä)
+        user_id: user._id,
         entry_date: req.body.date,
         mood: req.body.mood,
         weight: req.body.weight,
@@ -51,7 +50,7 @@ router.post(
       res.status(201).json(savedEntry); // Palautetaan tallennettu päiväkirjamerkintä
     } catch (err) {
       console.error(err);
-      res.status(500).send('Internal Server Error'); // Virhetilanteessa lähetetään 500-virhekoodi
+      res.status(500).send('Internal Server Error');
     }
   }
 );
@@ -60,8 +59,8 @@ router.post(
 router.get('/api/diary/history', async (req, res) => {
   try {
     // Hae käyttäjän vanhat päiväkirjamerkinnät tietokannasta
-    const userId = req.user.id; // Olettaen, että käyttäjän id on tallennettu pyynnön käyttäjäolioon
-    const diaryEntries = await DiaryEntry.find({ user_id: userId }); // Olettaen, että käyttäjän id on tietokantamallissa kenttänä user_id
+    const userId = req.user.id;
+    const diaryEntries = await DiaryEntry.find({ user_id: userId });
 
     // Palauta haetut päiväkirjamerkinnät vastauksena
     res.status(200).json(diaryEntries);
