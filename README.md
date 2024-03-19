@@ -1,127 +1,34 @@
-# Hyte web dev example back-end server
+## Tässä linkki uuteen toimivaan serveriin, jonka jouduin luomaan: https://srprojekti.northeurope.cloudapp.azure.com/
+ja tässä linkki pääsivulle: https://srprojekti.northeurope.cloudapp.azure.com/main-page.html
+Linkki front end koodien repositorioon: https://github.com/sennir/front-end
 
-**Node.js + Express** application.
+### Kuvankaappaukset käyttöliittymästä:
+<img width="1398" alt="Screenshot 2024-03-19 at 18 22 54" src="https://github.com/sennir/testi/assets/111979727/2d9e9efe-f08f-40e9-9605-5f34969ea8d8">
 
-(Check week/feature branches too.)
+<img width="1398" alt="Screenshot 2024-03-19 at 18 23 06" src="https://github.com/sennir/testi/assets/111979727/b2bb6b52-ce5b-45cc-9576-bce4dd182ef2">
 
-## Usage
+<img width="1398" alt="Screenshot 2024-03-19 at 18 23 45" src="https://github.com/sennir/testi/assets/111979727/91c29e24-5954-40ca-bef2-877cf96cc4ba">
 
-1. Clone/download code
-2. Run `npm i` inside project folder
-3. Install & start MySQL/MariaDB server
-4. Import database script(s) in `db/` folder
-5. Create `.env` file based on `.env.sample`
-6. Start the dev server: `npm run dev` / `npm start`
+<img width="1398" alt="Screenshot 2024-03-19 at 18 23 34" src="https://github.com/sennir/testi/assets/111979727/bab6ec85-493c-4522-a973-60d35a556aaf">
 
-## Resources and endpoints
+<img width="1398" alt="Screenshot 2024-03-19 at 18 24 01" src="https://github.com/sennir/testi/assets/111979727/dd249226-8327-4dea-b633-9c15c37c4265">
 
-### `/items` (works with hard-coded mock data only, no need for db)
+<img width="1267" alt="Screenshot 2024-03-19 at 18 08 20" src="https://github.com/sennir/testi/assets/111979727/c5114ca9-5dad-400e-96aa-d233e6db16c1">
 
-```http
-GET http://127.0.0.1:3000/items
-GET http://127.0.0.1:3000/items/:id
-DELETE http://127.0.0.1:3000/items/:id
+## Tietokanta:
 
-POST http://127.0.0.1:3000/items
-content-type: application/json
-body: {"name": "New Item"}
-```
+<img width="280" alt="Screenshot 2024-03-19 at 18 15 12" src="https://github.com/sennir/testi/assets/111979727/1972a300-4799-4d14-85ba-c046f751dda8">
 
-### `/api/auth`
+<img width="892" alt="Screenshot 2024-03-19 at 18 15 53" src="https://github.com/sennir/testi/assets/111979727/9b05bdf4-87f8-4261-9e20-b135546989da">
 
-Example queries:
+<img width="892" alt="Screenshot 2024-03-19 at 18 16 23" src="https://github.com/sennir/testi/assets/111979727/a153d946-738a-41be-a403-c192f05248e5">
 
-```http
-# Login
-POST http://localhost:3000/api/users/login
-content-type: application/json
-{
-  "username": "user",
-  "password": "secret"
-}
 
-## Get user by token (requires token)
-GET http://localhost:3000/api/auth/me
-Authorization: Bearer <token>
-```
+## Toiminnallisuudet:
+- käyttäjän luominen
+- sisäänkirjautiminen
 
-### `/api/users`
-
-Example queries:
-
-```http
-# Get all users (requires token)
-GET http://127.0.0.1:3000/api/users
-Authorization: Bearer <token>
-
-# Get user by id (requires token)
-GET http://127.0.0.1:3000/api/users/:id
-Authorization: Bearer <token>
-
-# Delete user (requires token)
-DELETE http://127.0.0.1:3000/api/users/:id
-Authorization: Bearer <token>
-
-# Create user (register)
-POST http://127.0.0.1:3000/api/users
-content-type: application/json
-
-{
-  "username": "test-update4",
-  "password": "test-pw-update4",
-  "email": "update4@example.com"
-}
-
-# Update user's own data (requires token)
-PUT http://127.0.0.1:3000/api/users/
-Authorization: Bearer <token>
-content-type: application/json
-
-{
-  "username": "test-update4",
-  "password": "test-pw-update4",
-  "email": "update4@example.com"
-}
-```
-
-### `/api/entries`
-
-Example queries:
-
-```http
-# Get all entries for a logged in user (requires token)
-GET http://localhost:3000/api/entries
-Authorization: Bearer <token>
-
-# Get entries by id
-GET http://localhost:3000/api/entries/:id
-
-# Post entry
-POST http://localhost:3000/api/entries
-content-type: application/json
-
-{
-  "entry_date": "2024-02-12",
-  "mood": "Happy",
-  "weight": 69.6,
-  "sleep_hours": 7,
-  "notes": "This was a good day",
-  "user_id": 3
-}
-
-# Update entry
-PUT http://localhost:3000/api/entries/:id
-content-type: application/json
-
-{
-  "entry_date": "2024-02-12",
-  "mood": "Even more happy now",
-  "weight": 69.6,
-  "sleep_hours": 7,
-  "notes": "This was a good day",
-  "user_id": 3
-}
-
-# Delete entry
-DELETE http://localhost:3000/api/entries/:id
-```
+## Bugit:
+- Päiväkirjamerkintöjen tallennus epäonnistuu
+- Vanhoja päiväkirjamerkintöjä ei pysty hakemaan
+- Uloskirjautuminen ei todellisuudessa kirjaa mitään ulos, se heittää käyttäjän vaan takaisin kirjautumissivulle
