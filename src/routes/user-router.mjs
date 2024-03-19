@@ -24,9 +24,9 @@ userRouter
       .trim()
       .isLength({min: 3, max: 20})
       .isAlphanumeric(),
-    body('password', 'minimum password length is 8 characters')
+    body('password', 'minimum password length is 3 characters')
       .trim()
-      .isLength({min: 8, max: 128}),
+      .isLength({min: 3, max: 128}),
     body('email', 'must be a valid email address')
       .trim()
       .isEmail()
@@ -40,7 +40,7 @@ userRouter
       .trim()
       .isLength({min: 3, max: 20})
       .isAlphanumeric(),
-    body('password', 'minimum password length is 8 characters')
+    body('password', 'minimum password length is 3 characters')
       .trim()
       .isLength({min: 3, max: 128}),
     body('email', 'must be a valid email address')
